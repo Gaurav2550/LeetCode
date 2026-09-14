@@ -1,28 +1,28 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
         
-        if (s.length() != t.length()) {
+         if (s.length() != t.length()) {
             return false;
         }
 
-        int[] sToT = new int[26];
-        int[] tToS = new int[26];
+        Map<Character, Character> sToT = new HashMap<>();
+        Map<Character, Character> tToS = new HashMap<>();
 
         for (int i = 0; i < s.length(); i++) {
 
-            int sIndex = s.charAt(i) - 'a';
-            int tIndex = t.charAt(i) - 'a';
+            char sc = s.charAt(i);
+            char tc = t.charAt(i);
 
-            // Check existing mapping conflict
-            if ((sToT[sIndex] != 0 && sToT[sIndex] != tIndex + 1) ||
-                (tToS[tIndex] != 0 && tToS[tIndex] != sIndex + 1)) {
-
+            if (sToT.containsKey(sc) && sToT.get(sc) != tc) {
                 return false;
             }
 
-            // Store mapping
-            sToT[sIndex] = tIndex + 1;
-            tToS[tIndex] = sIndex + 1;
+            if (tToS.containsKey(tc) && tToS.get(tc) != sc) {
+                return false;
+            }
+
+            sToT.put(sc, tc);
+            tToS.put(tc, sc);
         }
 
         return true;
