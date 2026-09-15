@@ -21,7 +21,7 @@ class Solution {
               }
               
               
-              if( wordToPattern.containsKey(word)&&  !wordToPattern.get(word!=ch){
+              if( wordToPattern.containsKey(word)&&  !wordToPattern.get(word)!=ch){
                 return false;
               }
 
