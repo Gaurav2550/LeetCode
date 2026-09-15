@@ -21,11 +21,11 @@ class Solution {
               }
               
               
-              if( wordToPattern.containsKey(ch)&&  !wordToPattern.get(ch).equals(word)){
+              if( wordToPattern.containsKey(word)&&  !wordToPattern.get(word!=ch){
                 return false;
               }
 
-              patternToWord.put(ch,word);
+               patternToWord.put(ch,word);
                wordToPattern.put(word,ch);
             
               }
