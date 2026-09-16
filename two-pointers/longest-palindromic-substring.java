@@ -1,48 +1,41 @@
 class Solution {
     public String longestPalindrome(String s) {
-         int n =s.length();
-           
-        String subStrinPallindrome = "";   
 
-       int len = 0;
+    if(s == null || s.length()<2){
+        return s;
 
-       for(int i =0 ;  i<n ; i++){
-        String oddLenCount = getPalindromeCout(i-1,i+1,s);
-        String evenLenCount = getPalindromeCout(i,i+1,s);
-       
-         if(len<oddLenCount.length()){
-           subStrinPallindrome = oddLenCount;
-           len = oddLenCount.length();
-         }
-
-         if(len<evenLenCount.length()){
-           subStrinPallindrome = evenLenCount;
-           len = evenLenCount.length();
-         }
-
-
-
-          
-       }
-      return subStrinPallindrome;
-    }   
+    }        
     
-    String getPalindromeCout(int l  , int r ,  String s){
-      int n = s.length();
-      int count = 0;
-      while(l>=0 && r<n){
-        if(s.charAt(l) == s.charAt(r)){
-           count ++;
-           l--;
-           r++;
+    int start = 0;
+    int end  = 0;
 
-        }else{
-            break;
+    for(int i=0; i<s.length(); i++){
+        int len1 =  expandAroundCenter(s,i,i);
+        int len2 = expandAroundCenter(s,i,i+1);
+
+        int len = Math.max(len1,len2);
+
+        if(len > end-start +1){
+            start = i-(len-1)/2;
+            end = i + len/2;
         }
 
-      }
 
-    return s.substring(l + 1 , r);
+    }
 
+    return s.substring(start,end+1);
+
+    }
+
+ private int expandAroundCenter(String s , int left , int right){
+    while(left>=0 && right<s.length() && s.charAt(left)==s.charAt(right)){
+        left--;
+        right++;
+
+    }
+       return right-left-1;
  }
+
+
+
 }
