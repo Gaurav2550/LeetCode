@@ -12,13 +12,11 @@ class Solution {
 
                  char top =  stack.pop();
 
-                if( (ch ==')' && ch !='(') ||
-                    (ch ==']' && ch !='[') ||
-                    (ch =='}' && ch !='{') 
-                ){
+                if ((ch == ')' && top != '(') ||
+                    (ch == ']' && top != '[') ||
+                    (ch == '}' && top != '{')) {
 
                     return false;
-
                 }
             
             }
